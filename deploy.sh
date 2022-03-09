@@ -1,7 +1,7 @@
 IMAGE=gcr.io/$PROJECT/gcs-proxy:$(date '+%Y%m%d%H%M')
 
 gcloud builds submit -t $IMAGE && \
-gcloud run deploy \
+gcloud beta run deploy \
 --image=$IMAGE \
 --platform=managed \
 --allow-unauthenticated \
