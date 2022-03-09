@@ -1,14 +1,7 @@
 server {
 	listen 8080 default_server;
-	root /var/www/html;
-
-	index index.html;
-
 	server_name _;
-
 	location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
                 resolver 169.254.169.254 valid=2s ipv6=off;
                 set $upstream "storage.googleapis.com";
                 set $yourbucket "{GCS_BUCKET}";
@@ -19,6 +12,7 @@ server {
                 proxy_set_header  X-Real-IP         $remote_addr;
                 proxy_set_header  X-Forwarded-For   $proxy_add_x_forwarded_for;
                 proxy_set_header  X-Forwarded-Proto $scheme;
+                proxy_connect_timeout 2s;
                 rewrite_by_lua_block {
                         local file = io.open("/tmp/token")
                         io.input(file)
@@ -28,7 +22,7 @@ server {
                 }
         }
 
-	location /thisistest {
+	location = /thisistest {
 		return 200 "ok";
 	}
 
