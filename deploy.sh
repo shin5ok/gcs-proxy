@@ -11,4 +11,4 @@ gcloud run deploy \
 gcs-proxy \
 --min-instances 2 \
 --execution-environment=gen2 \
---no-cpu-throttling $@
+--no-cpu-throttling
