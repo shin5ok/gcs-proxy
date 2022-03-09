@@ -1,1 +1,1 @@
-*/5 * * * * root gcloud auth application-default print-access-token > /tmp/token.new && mv /tmp/token.new /tmp/token
+* * * * * root gcloud auth application-default print-access-token > /tmp/token.new && mv /tmp/token.new /tmp/token
