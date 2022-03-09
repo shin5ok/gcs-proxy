@@ -10,5 +10,6 @@ gcloud beta run deploy \
 --project=$PROJECT \
 gcs-proxy \
 --min-instances 2 \
+--max-instances 2 \
 --execution-environment=gen2 \
 --no-cpu-throttling
