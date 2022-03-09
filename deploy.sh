@@ -1,1 +1,12 @@
-gcloud run deploy --image=gcr.io/shingo-ar-bne03/gcs-proxy:0.86 --platform=managed --allow-unauthenticated --region=us-central1 --set-env-vars=GCS_BUCKET=$GCS_BUCKET --project=shingo-ar-bne03 gcs-proxy --no-cpu-throttling
+IMAGE=gcr.io/$PROJECT/gcs-proxy:$(date '+%Y%m%d%H%M')
+
+gcloud builds submit -t $IMAGE && \
+gcloud run deploy \
+--image=$IMAGE \
+--platform=managed \
+--allow-unauthenticated \
+--region=us-central1 \
+--set-env-vars=GCS_BUCKET=$GCS_BUCKET \
+--project=$PROJECT \
+gcs-proxy \
+--no-cpu-throttling
