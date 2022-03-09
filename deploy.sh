@@ -9,4 +9,6 @@ gcloud run deploy \
 --set-env-vars=GCS_BUCKET=$GCS_BUCKET \
 --project=$PROJECT \
 gcs-proxy \
---no-cpu-throttling
+--min-instances 2 \
+--execution-environment=gen2 \
+--no-cpu-throttling $@
