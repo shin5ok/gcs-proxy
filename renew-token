@@ -1,1 +1,2 @@
+MAILTO=/dev/null
 * * * * * root gcloud auth application-default print-access-token > /tmp/token.new && mv /tmp/token.new /tmp/token && echo "token renewed"
