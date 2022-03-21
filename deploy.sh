@@ -1,4 +1,6 @@
+#!/bin/sh
 IMAGE=gcr.io/$PROJECT/gcs-proxy:$(date '+%Y%m%d%H%M')
+INSTANCES_COUNT=${INSTANCES_COUNT:-2}
 
 gcloud builds submit -t $IMAGE && \
 gcloud beta run deploy \
@@ -10,7 +12,8 @@ gcloud beta run deploy \
 --project=$PROJECT \
 gcs-proxy \
 --ingress=internal-and-cloud-load-balancing \
---min-instances 2 \
---max-instances 2 \
+--min-instances $INSTANCES_COUNT \
+--max-instances $INSTANCES_COUNT \
 --no-cpu-throttling \
 --execution-environment=gen2
+
