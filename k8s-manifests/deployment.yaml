@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+  generation: 2
+  labels:
+    app: gcs-proxy
+  name: gcs-proxy
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcs-proxy
+  template:
+    metadata:
+      labels:
+        app: gcs-proxy
+    spec:
+      containers:
+      - env:
+        - name: GCS_BUCKET
+          value: ${GCS_BUCKET}
+        image: shin5ok/gcs-proxy
+        imagePullPolicy: Always
+        name: gcs-proxy
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
