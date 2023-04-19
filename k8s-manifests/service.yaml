@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80":"my-backendconfig"}}'
+    cloud.google.com/neg: '{"ingress":true}'
+  labels:
+    app: gcs-proxy
+  name: gcs-proxy
+  namespace: default
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: gcs-proxy
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gcs-proxy
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: Prefix
+        backend:
+          service:
+            name: gcs-proxy
+            port:
+              number: 80
+
