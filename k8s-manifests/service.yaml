@@ -26,11 +26,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: gcs-proxy
+  annotations:
+    networking.gke.io/managed-certificates: managed-cert-gcs-proxy
 spec:
   rules:
   - http:
       paths:
-      - path: /*
+      - path: /
         pathType: Prefix
         backend:
           service:

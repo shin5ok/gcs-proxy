@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: managed-cert-gcs-proxy
+  namespace: default
+spec:
+  domains:
+    - ${FQDN}
