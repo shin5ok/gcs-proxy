@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:latest
+FROM google/cloud-sdk:427.0.0-slim
 
 RUN apt update && apt install -y libnginx-mod-http-lua cron supervisor procps nginx gettext-base
 COPY ./default /etc/nginx/sites-enabled/
