@@ -22,7 +22,7 @@ spec:
       - env:
         - name: GCS_BUCKET
           value: ${GCS_BUCKET}
-        image: shin5ok/gcs-proxy
+        image: shin5ok/gcs-proxy:v1.0
         imagePullPolicy: Always
         name: gcs-proxy
       dnsPolicy: ClusterFirst

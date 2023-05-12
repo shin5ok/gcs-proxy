@@ -11,7 +11,7 @@ gcloud beta run deploy \
 --set-env-vars=GCS_BUCKET=$GCS_BUCKET \
 --project=$PROJECT \
 gcs-proxy \
---ingress=internal-and-cloud-load-balancing \
+# --ingress=internal-and-cloud-load-balancing \
 --min-instances $INSTANCES_COUNT \
 --max-instances $INSTANCES_COUNT \
 --no-cpu-throttling \
