@@ -4,7 +4,7 @@ INSTANCES_COUNT=${INSTANCES_COUNT:-2}
 REGION=${REGION:asia-northeast1}
 
 gcloud builds submit -t $IMAGE && \
-gcloud beta run deploy \
+gcloud run deploy \
 --image=$IMAGE \
 --platform=managed \
 --allow-unauthenticated \
